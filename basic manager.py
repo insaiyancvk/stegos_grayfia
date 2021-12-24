@@ -1,5 +1,9 @@
 import getpass
-from utils import check_jpg, get_input, write_enc_data, read_enc_data
+from utils import check_jpg, get_input, write_enc_data, read_enc_data, Picker
+from rich.console import Console
+from rich.columns import Columns
+from rich.table import Table
+from rich.panel import Panel
 
 if __name__ == '__main__':
 
@@ -26,8 +30,21 @@ if __name__ == '__main__':
                 exit()
             else:
                 print('Data decrypted successfully :)')
-                for key, value in data_dict.items():
-                    print(key, value)
+                options = ['Check the existing data','Update data','Delete data']
+                picker = Picker(options, "Select your choice using the arrow keys or press q to quit", indicator= " => ")
+                picker.register_custom_handler(ord('q'), lambda picker: exit())
+                picker.register_custom_handler(ord('Q'), lambda picker: exit())
+                _, op = picker.start()
+
+                if op == 0:
+                    for key, value in data_dict.items():
+                        print(key, value)
+                
+                elif op == 1:
+                    pass
+
+                elif op == 2:
+                    pass
 
     elif not check_jpg(image):
         print("The image not in JPG format :(")
