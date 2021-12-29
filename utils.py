@@ -1,4 +1,4 @@
-import base64, getpass
+import base64, getpass, sys, os
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto import Random
@@ -50,6 +50,7 @@ def read_enc_data(img_path, key):
         offset = content.index(bytes.fromhex('FFD9')) # get the index of FFD9
         f.seek(offset+2) # seek till the offset
         get_data = f.read().decode('utf-8') # read the data after the offset position and decode
+        
     dec_data = eval(decrypt(key, get_data)) # decrypt the data and convert str(dictionary) to dictionary
     if dec_data == -1: # Check if the key is correct
         return -1
@@ -63,6 +64,18 @@ def check_jpg(name):
         return True
     else:
         return False
+
+def if_data(image):
+    data = ''
+    with open(image, 'rb') as f:
+        content = f.read()
+        offset = content.index(bytes.fromhex('FFD9'))
+        f.seek(offset+2)
+        data = f.read().decode('utf-8')
+        
+    if data == '':
+        return False
+    return True
 
 def get_input():
 
@@ -78,6 +91,7 @@ def get_input():
         passw = ''
         
         service = input('Enter name of the service (eg: Gmail, Facebook, instagram, etc): ')
+        service = service.lower()
         if service=='':
             break
         
@@ -103,6 +117,13 @@ def rem_data(img):
     with open(img, 'r+') as f: # open the file as read update mode
         f.seek(position) # seek to FFD9 position
         f.truncate() # clear the data after FFD9
+
+def clear_screen():
+    if sys.platform=='win32' or os.name=='nt':
+        os.system("cls")
+    elif sys.platform=='linux' or os.name=='posix':
+        os.system("clear")
+
 
 KEYS_ENTER = (curses.KEY_ENTER, ord('\n'), ord('\r'))
 KEYS_UP = (curses.KEY_UP, ord('k'))
