@@ -1,15 +1,9 @@
-import getpass, sys, os
-from utils import check_jpg, get_input, if_data, write_enc_data, read_enc_data, rem_data, Picker
+import getpass
+from utils import check_jpg, get_input, if_data, write_enc_data, read_enc_data, rem_data, clear_screen, Picker
 from rich.console import Console
 # from rich.columns import Columns
 from rich.table import Table
 # from rich.panel import Panel
-
-def clear_screen():
-    if sys.platform=='win32' or os.name=='nt':
-        os.system("cls")
-    elif sys.platform=='linux' or os.name=='posix':
-        os.system("clear")
 
 
 def access_data(image):
