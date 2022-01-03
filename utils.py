@@ -1,8 +1,19 @@
-import base64, getpass, sys, os
+import base64, sys, os, curses
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto import Random
-import curses
+from ui_utils import pass_inp
+from PIL import Image
+
+def png_to_jpg(image):  
+
+    with Image.open(image) as im:
+        
+        img_name, _ = os.path.splitext(os.path.basename(image))
+        im.save(f'{img_name}.jpg',"JPEG")
+
+    print(f'"{image}" saved as "{img_name}.jpg" !')
+    return f'{img_name}.jpg'
 
 def encrypt(key, source, encode=True): # Encrypt the str(dictionary) with a key and return utf-8 decoded string
     key = key.encode('utf-8') # encode the key to utf-8 (as bytes)
@@ -99,7 +110,9 @@ def get_input():
         if handle=='':
             break
         
-        passw = getpass.getpass(f'Enter the password of your {service}: ')
+        # passw = getpass.getpass()
+        outp = pass_inp(f'Enter the password of your {service}: ', 'passw')
+        passw = outp['passw']
         if passw=='':
             break
         
