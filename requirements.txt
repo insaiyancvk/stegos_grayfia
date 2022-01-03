@@ -1,0 +1,20 @@
+certifi==2021.10.8
+charset-normalizer==2.0.9
+colorama==0.4.4
+commonmark==0.9.1
+idna==3.3
+Naked==0.1.31
+Pillow==9.0.0
+prompt-toolkit==1.0.14
+pycryptodome==3.12.0
+Pygments==2.11.1
+PyInquirer==1.0.3
+PyYAML==6.0
+regex==2021.11.10
+requests==2.26.0
+rich==10.16.2
+shellescape==3.8.1
+six==1.16.0
+urllib3==1.26.7
+wcwidth==0.2.5
+windows-curses==2.3.0; platform_system=="Windows"
