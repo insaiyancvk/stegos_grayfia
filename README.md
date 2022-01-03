@@ -45,3 +45,8 @@ Setup:
     ```
     env\Scripts\deactivate.bat
     ```
+
+6. To update code locally
+
+    - Change the directory to password-manager
+    - `git pull`
