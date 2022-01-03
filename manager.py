@@ -1,15 +1,20 @@
 import getpass
-from utils import check_jpg, get_input, if_data, write_enc_data, read_enc_data, rem_data, clear_screen, Picker
+import os
+from utils import check_jpg, get_input, if_data, png_to_jpg, write_enc_data, read_enc_data, rem_data, clear_screen, Picker
+from ui_utils import get_image_popup, pass_inp, yn_prompt
 from rich.console import Console
 # from rich.columns import Columns
 from rich.table import Table
 # from rich.panel import Panel
 
+# add delay where required
 
 def access_data(image):
     data_dict = {}
     c = Console()
-    key = getpass.getpass('Enter your key: ') # read the password with echo off
+    outp = pass_inp('Enter your key: ', 'key')
+    key = outp['key']
+
     print('Reading the data from image')
 
     try:
@@ -39,9 +44,9 @@ def access_data(image):
             for k, value in data_dict.items():
                 table.add_row('\n'+k, '\n'+value[0], '\n****'+value[1][-2:])
             c.print(table)
-
-            inp = input("Would you like to check the password to a particular service? (y/n): ")
-            if inp.lower() == 'y':
+            
+            inp =  yn_prompt("Would you like to check the password to a particular service ? ",'inp')
+            if inp['inp']:
                 ser = input('Enter the service name: ')
                 for k, value in data_dict.items():
                     if k.lower() == ser.lower():
@@ -64,7 +69,10 @@ def access_data(image):
             ser = ser.lower()
 
             handle = input(f"Enter the handle of {ser}: ")
-            passw = getpass.getpass(f'Enter the password of {ser}: ')
+            # passw = getpass.getpass(f'Enter the password of {ser}: ')
+            outp = pass_inp(f'Enter the password of your {ser}: ', 'passw')
+            passw = outp['passw']
+            passw = outp['passw']
 
             rem_data(image)
             data_dict[ser] = [handle, passw]
@@ -91,19 +99,22 @@ def access_data(image):
             for k, value in data_dict.items():
                 if k.lower() == ser:
                     print("The following is going to be deleted\n")
+                    
                     table = Table(header_style='bold green')
                     table.add_column('Service')
                     table.add_column('Handle')
                     table.add_column('Password')
                     table.add_row('\n'+k, '\n'+value[0], '\n****'+value[1][-2:])
                     c.print(table)
-                    conf = input("Are you sure you want to delete it (y/n): ")
-                    if conf.lower() == 'y':
+
+                    conf = yn_prompt("Are you sure you want to delete it ? ",'conf')
+                    if conf['conf']:
                         del data_dict[ser]
                         rem_data(image)
                         write_enc_data(image, data_dict, key)
-                        chk = input("Would you like to check the updated data (y/n): ")
-                        if chk.lower() == 'y':
+                        
+                        chk = yn_prompt('Would you like to check the updated data ?','chk')
+                        if chk['chk']:
                             table1 = Table(header_style='bold green')
                             table1.add_column('Service')
                             table1.add_column('Handle')
@@ -116,10 +127,21 @@ def access_data(image):
                     return
             print(f'No such service found\nexiting')
             return
+        # OP 3 to export data in key protected csv as a zip file (https://www.geeksforgeeks.org/create-password-protected-zip-of-a-file-using-python/)
 
 def main():
 
-    image = input('Enter the image path: ')
+    image = ''
+    input('press enter to select the image')
+    image = get_image_popup()
+
+    if os.path.splitext(image)[1].lower() == '.png':
+        print('Converting the image from PNG to JPEG')
+        image = png_to_jpg(image)
+    
+    if image == '':
+        exit() 
+
     data_dict = {}
 
     if check_jpg(image): # check if the input image has FFD9 in it
@@ -130,9 +152,9 @@ def main():
         else: 
 
             key = input('Create a key (NEVER FORGET IT): ')
-            ch1 = input('Would you like to add your data? (y/n): ')
+            ch1 = yn_prompt('Would you like to add your data ? ','ch1')
 
-            if ch1.lower() == 'y':
+            if ch1['ch1']:
 
                 data_dict = get_input() # get the service, handle, password dictionary
                 write_enc_data(image, data_dict, key) # pass the dictionary, key to the function
