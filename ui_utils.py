@@ -1,6 +1,6 @@
 # from __future__ import print_function
 # import sys
-from PyInquirer import prompt
+from PyInquirer.prompt import prompt
 import tkinter as tk
 from tkinter import filedialog
 
@@ -17,6 +17,7 @@ def yn_prompt(message, name):
     return resp
 
 def pass_inp(message, name):
+    
     return prompt(
         {
         'type': 'password',
@@ -26,12 +27,18 @@ def pass_inp(message, name):
     )
 
 
+
 def get_image_popup():
 
     root = tk.Tk() # create a tkinter object
+    root.attributes('-topmost',1)
     root.withdraw() # close the pop up created by tkinter
 
-    file_path = filedialog.askopenfilename(multiple=False, filetypes= [('Image Files', ('*.jpg', '*.png'))]) # select images in jpg and png format
+    file_path = filedialog.askopenfilename(
+        multiple=False, 
+        filetypes= [
+            ('Image Files', ('*.jpg', '*.png'))
+            ]) # select images in jpg and png format
     
     return file_path
 
