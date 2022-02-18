@@ -40,7 +40,6 @@ def decrypt(key, source, decode=True): # Decrypt the encrypted string data and r
     data = decryptor.decrypt(source[AES.block_size:])
     padding = data[-1]
     if data[-padding:] != bytes([padding]) * padding: # Check for the padding (idk what it is)
-        print('Wrong key :(')
         return -1
     return data[:-padding].decode('utf-8') 
 
@@ -62,10 +61,10 @@ def read_enc_data(img_path, key):
         f.seek(offset+2) # seek till the offset
         get_data = f.read().decode('utf-8') # read the data after the offset position and decode
         
-    dec_data = eval(decrypt(key, get_data)) # decrypt the data and convert str(dictionary) to dictionary
+    dec_data = decrypt(key, get_data) # decrypt the data and convert str(dictionary) to dictionary
     if dec_data == -1: # Check if the key is correct
         return -1
-    return dec_data
+    return eval(dec_data)
 
 def check_jpg(name):
 
