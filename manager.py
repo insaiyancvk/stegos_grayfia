@@ -1,5 +1,4 @@
-import getpass
-import os
+import os, sys, pdb
 from utils import check_jpg, get_input, if_data, png_to_jpg, write_enc_data, read_enc_data, rem_data, clear_screen, Picker
 from ui_utils import get_image_popup, pass_inp, yn_prompt
 from rich.console import Console
@@ -17,14 +16,13 @@ def access_data(image):
 
     print('Reading the data from image')
 
-    try:
-        data_dict = read_enc_data(image, key) # read the data from image with the key
-    except:
-        pass
+    data_dict = read_enc_data(image, key) # read the data from image with the key
+
+    # pdb.set_trace()
 
     if data_dict == -1: # Exit if the padding doesn't match
         print('Wrong key :(')
-        return
+        sys.exit()
 
     else:
         print('\nData decrypted successfully.')
