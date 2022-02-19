@@ -3,21 +3,19 @@ This is a sort of _TODO_ kind of thing. And this is my notes.
 1. Debug the wrong key thing ✅
 2. Implement the dialog box to select the image ✅
     - Implement the same in pymusicdl to choose the download path
-3. Ask if the user wants to check the services for deleting a service.
+3. Ask if the user wants to check the services for deleting a service. 
 4. Implement password field from PyInquirer. ✅
-5. Improve the prompt messages UI using Rich and PyInquirer.
-6. Get inputs from the bottom of the terminal and update the inputs on the terminal.
-7. Store the key in same directory as the code with a bunch of encryptions
-8. Add an option for the user to send the key and image to their E-mail
-
-9. use expand.py to show the image path
+5. Improve the prompt messages UI using Rich and PyInquirer. ✅
+7. Store the key in same directory as the code with a bunch of encryptions ❌
+8. Add an option for the user to send the key and image to their E-mail ❌
+9. use expand.py to show the image path 
 10. use list.py to select inputs
-11. Implement back button
-12. Try to get the summary of what happened in the entire session
-13. Use `jobs.py` or `live_progress.py` or `status.py` while decryption, encryption, updation, finding something
-14. Use `dynamic_progress.py` to install dependencies
-15. Use `screen.py` to print the message related to image input at the beginning of the program
-16. Use `table_movie.py` to print all services, handles and passwords
+11. Implement back button ❌
+12. Try to get the summary of what happened in the entire session ❌
+13. Use `jobs.py` or `live_progress.py` or `status.py` while decryption, encryption, updation, finding something ✅
+14. Use `dynamic_progress.py` to install dependencies 
+15. Use `screen.py` to print the message related to image input at the beginning of the program ✅
+16. Use `table_movie.py` to print all services, handles and passwords ❌
 17. 
 
 
