@@ -12,14 +12,17 @@ def png_to_jpg(image):
 
         with Halo(text = 'Converting the image from PNG to JPEG', text_color = 'cyan', color='green', spinner='dots') as spinner:
             spinner.start()
+            # import pdb; pdb.set_trace()
+            base,_ = os.path.split(image)
             img_name, _ = os.path.splitext(os.path.basename(image))
-            im.save(f'{img_name}.jpg',"JPEG")
+            im.save(f'{base}/{img_name}.jpg',"JPEG")
+            
             time.sleep(2)
             spinner.stop_and_persist(text = f'"{image}" saved as "{img_name}.jpg"!')
         
     print('The data will now be stored in the JPG image.')
 
-    return f'{img_name}.jpg'
+    return f'{base}/{img_name}.jpg'
 
 def encrypt(key, source, encode=True): # Encrypt the str(dictionary) with a key and return utf-8 decoded string
     key = key.encode('utf-8') # encode the key to utf-8 (as bytes)
