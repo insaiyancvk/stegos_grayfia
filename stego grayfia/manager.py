@@ -160,7 +160,10 @@ def export_data(data_dict, key):
     # pdb.set_trace()
 
     export = []
-    csv_path = 'temp.csv'
+    csv_path = 'passwords.csv'
+
+    print('\nSelect a directory to export the passwords\n')
+    time.sleep(2)
 
     sel_path = get_path_popup()
 
@@ -168,8 +171,6 @@ def export_data(data_dict, key):
         clear_screen()
         print('Valid path not selected. Select a directory.')
         sel_path = get_path_popup()
-
-
 
     zip_path = sel_path +'/'+'passwords.zip'
 
@@ -208,16 +209,22 @@ def export_data(data_dict, key):
         print(f'\n\nThe zip file is protected with the same password as you used for the image')
         print(f'The zip file is located at: {sel_path}')
         
+        print('\nOpening the exported zip file directory\n')
+        time.sleep(3)
+        os.startfile(sel_path)
+
         ans = yn_prompt('Would you like to see the key ', 'key')
 
         if ans['key']:
             print(f'Key to the password protected zip is: {key}')
 
 def import_data(data_dict, image, key):
+
     Console().rule(
-        "\n[bold]Note that the CSV file must be an exported password file from a browser [bold]", 
+        "\n[bold]Note that the CSV file must be an exported password file from a browser. Expecting \[name,url,username,password] [bold]", 
         style="black", 
         align="center")
+    time.sleep(2)
     
     pass_csv = get_csv_popup()
     
@@ -235,8 +242,13 @@ def import_data(data_dict, image, key):
 
         time.sleep(2)
         with open(pass_csv, 'r') as f:
+            
             csvreader = csv.reader(f)
-            next(csvreader)
+            h = next(csvreader)
+            
+            if h != ['name', 'url', 'username', 'password']:
+                print('Not a valid CSV')
+            
             new_data = [[i[0],i[2],i[3]] for i in csvreader]
         
         spinner.text_color = 'green'
@@ -328,7 +340,6 @@ def access_data(image):
     elif op == 3:  # export data as csv and put it in password protected zip file
         
         export_data(data_dict, key)
-
     
     elif op == 4: # import csv 
         
