@@ -9,8 +9,6 @@ from rich.console import Console
 from rich.panel import Panel
 from halo import Halo
 
-## install all deez packages automatically using subprocess.call
-
 def check_data(data_dict):
 
     rows = []
@@ -329,12 +327,12 @@ def access_data(image):
     
     elif op == 3:  # export data as csv and put it in password protected zip file
         
-        export_data()
+        export_data(data_dict, key)
 
     
     elif op == 4: # import csv 
         
-       import_data()
+       import_data(data_dict, image, key)
 
 def main():
 
