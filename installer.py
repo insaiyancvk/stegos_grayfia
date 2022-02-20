@@ -119,6 +119,6 @@ print("\nThe following files have been installed\n")
 walk_directory(pathlib.Path(directory), tree)
 print(tree)
 
-console.log("\nRun 'py manager.py' in 'stego grayfia' directory\nOpening the directory")
+console.log(f"\nRun 'py manager.py' in {ROOT_DIR} directory\nOpening the directory")
 sleep(3)
 os.startfile(ROOT_DIR)
