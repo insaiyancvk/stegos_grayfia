@@ -14,19 +14,20 @@ Features:
 
 ### Installer
 
-https://raw.githubusercontent.com/insaiyancvk/stegos_grayfia/main/assets/installer.mp4
+https://user-images.githubusercontent.com/53230977/154854140-8e8034b9-db16-474f-93e0-8e8c1d5ffdad.mp4
 
 ### Export data
 
-https://raw.githubusercontent.com/insaiyancvk/stegos_grayfia/main/assets/export%20data.mp4
+https://user-images.githubusercontent.com/53230977/154854150-ace49990-04bc-41de-b3c8-5bdefa2e3a08.mp4
 
 ### Import data
 
-https://raw.githubusercontent.com/insaiyancvk/stegos_grayfia/main/assets/import%20data.mp4
+https://user-images.githubusercontent.com/53230977/154854152-ca50b8c3-6c8e-46ff-9928-d90dc67c0427.mp4
 
 ### Check data
 
-https://raw.githubusercontent.com/insaiyancvk/stegos_grayfia/main/assets/check%20data.mp4
+https://user-images.githubusercontent.com/53230977/154854166-ad2b2221-8de4-4a53-beab-349c021ebbb2.mp4
+
 
 Setup (tested on windows only):
 
