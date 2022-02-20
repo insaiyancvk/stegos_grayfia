@@ -31,7 +31,7 @@ script_name = [
 if os.name == 'nt':
     dem_packages.append('windows-curses')
 
-ROOT_DIR = 'stego grayfia'
+ROOT_DIR = 'Stegos Grayfia'
 
 from time import sleep
 from rich.console import Console
